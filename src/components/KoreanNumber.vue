@@ -5,9 +5,19 @@
     </div>
     <div class="card-body d-flex flex-column align-items-center py-4">
       <div class="text-center mb-4">
-        <p class="korean-text mb-0" :class="{ 'text-muted': !number }">
-          {{ koreanNumber || placeholder }}
-        </p>
+        <div class="d-flex align-items-center gap-3">
+          <p class="korean-text mb-0" :class="{ 'text-muted': !number }">
+            {{ koreanNumber || placeholder }}
+          </p>
+          <button 
+            v-if="number"
+            class="btn btn-link text-primary p-0"
+            @click="playSound"
+            :title="$t('playSound')"
+          >
+            <i class="bi bi-volume-up fs-4"></i>
+          </button>
+        </div>
       </div>
       <div v-if="number && example" class="example-section w-100">
         <p class="korean-example mb-2" v-html="example.korean"></p>
@@ -23,6 +33,7 @@ import { computed } from 'vue';
 import { convertToSinoKorean, convertToNativeKorean } from '@/utils/koreanNumbers';
 import { sinoExampleTemplates, nativeExampleTemplates } from '@/utils/examples';
 import { useI18n } from 'vue-i18n';
+import { speakKorean } from '@/utils/audio';
 
 const props = defineProps({
   number: {
@@ -65,6 +76,12 @@ const koreanNumber = computed(() => {
     ? convertToSinoKorean(num)
     : convertToNativeKorean(num);
 });
+
+const playSound = () => {
+  if (koreanNumber.value) {
+    speakKorean(koreanNumber.value);
+  }
+};
 </script>
 
 <style scoped>

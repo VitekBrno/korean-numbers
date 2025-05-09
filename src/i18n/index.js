@@ -9,7 +9,8 @@ const messages = {
     switchToCzech: 'Switch to Czech',
     sinoKorean: 'Sino-Korean',
     nativeKorean: 'Native Korean',
-    enterNumber: 'Enter a number...'
+    enterNumber: 'Enter a number...',
+    playSound: 'Play pronunciation'
   },
   cs: {
     title: 'Učte se korejská čísla',
@@ -19,7 +20,8 @@ const messages = {
     switchToEnglish: 'Přepnout na angličtinu',
     sinoKorean: 'Sino-korejština',
     nativeKorean: 'Původní korejština',
-    enterNumber: 'Zadejte číslo...'
+    enterNumber: 'Zadejte číslo...',
+    playSound: 'Přehrát výslovnost'
   }
 };
 
