@@ -1,0 +1,19 @@
+.number:hover {
+  transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .number {
+    font-size: 4rem;
+    padding: 1.5rem;
+    min-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .number {
+    font-size: 3rem;
+    padding: 1rem;
+    min-width: 140px;
+  }
+}
