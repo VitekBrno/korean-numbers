@@ -10,7 +10,12 @@
     </header>
     
     <main class="container">
-      <NumberInput />
+      <div class="number-display d-flex flex-column justify-content-center align-items-center w-100 my-5">
+        <RangeControls />
+        <AutoPlayControls />
+        <NumberDisplay />
+        <NumberTranslations :number="isValidInput ? store.currentNumber : ''" />
+      </div>
     </main>
     
     <footer class="mt-5 py-3 text-center text-muted">
@@ -22,8 +27,21 @@
 </template>
 
 <script setup>
-import NumberInput from '@/components/NumberInput.vue';
+import { ref } from 'vue';
+import { useNumberStore } from '@/stores/number';
+import RangeControls from '@/components/RangeControls.vue';
+import AutoPlayControls from '@/components/AutoPlayControls.vue';
+import NumberDisplay from '@/components/NumberDisplay.vue';
+import NumberTranslations from '@/components/NumberTranslations.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
+
+const store = useNumberStore();
+const isValidInput = ref(true);
+
+const validateInput = () => {
+  const num = Number(store.currentNumber);
+  isValidInput.value = !isNaN(num) && num >= 0 && num <= 9999 && store.currentNumber !== '';
+};
 </script>
 
 <style scoped>

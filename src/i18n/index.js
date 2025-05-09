@@ -14,7 +14,13 @@ const messages = {
     random: 'Random',
     rangeSettings: 'Random Number Range',
     minValue: 'Minimum',
-    maxValue: 'Maximum'
+    maxValue: 'Maximum',
+    autoPlay: 'Auto Play',
+    stop: 'Stop',
+    difficulty: 'Difficulty',
+    easy: 'Easy',
+    medium: 'Medium',
+    hard: 'Hard'
   },
   cs: {
     title: 'Učte se korejská čísla',
@@ -29,7 +35,13 @@ const messages = {
     random: 'Náhodně',
     rangeSettings: 'Rozsah náhodných čísel',
     minValue: 'Minimum',
-    maxValue: 'Maximum'
+    maxValue: 'Maximum',
+    autoPlay: 'Automatické přehrávání',
+    stop: 'Stop',
+    difficulty: 'Obtížnost',
+    easy: 'Lehká',
+    medium: 'Střední',
+    hard: 'Těžká'
   }
 };
 
