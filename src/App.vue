@@ -2,7 +2,10 @@
   <div class="container-fluid p-0">
     <header class="bg-white shadow-sm py-3 mb-4">
       <div class="container">
-        <h1 class="display-5 text-center">Learn Korean Numbers</h1>
+        <h1 class="display-5 text-center">{{ $t('title') }}</h1>
+        <div class="position-absolute top-0 end-0 mt-3 me-3">
+          <LanguageSwitcher />
+        </div>
       </div>
     </header>
     
@@ -12,7 +15,7 @@
     
     <footer class="mt-5 py-3 text-center text-muted">
       <div class="container">
-        <p class="mb-0">Korean Number Learning App © 2025</p>
+        <p class="mb-0">{{ $t('footer') }}</p>
       </div>
     </footer>
   </div>
@@ -20,6 +23,7 @@
 
 <script setup>
 import NumberInput from './components/NumberInput.vue';
+import LanguageSwitcher from './components/LanguageSwitcher.vue';
 </script>
 
 <style scoped>

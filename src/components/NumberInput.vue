@@ -1,5 +1,6 @@
 <template>
-  <div class="number-display d-flex justify-content-center align-items-center w-100 my-5">
+  <div class="number-display d-flex flex-column justify-content-center align-items-center w-100 my-5">
+    <label class="form-label h4 mb-4">{{ $t('inputLabel') }}</label>
     <input
       type="number"
       class="number form-control border-0 shadow-sm text-center"
@@ -10,13 +11,16 @@
       :class="{ 'is-invalid': !isValidInput }"
     >
     <div v-if="!isValidInput" class="invalid-feedback">
-      Please enter a number between 0 and 9999
+      {{ $t('invalidInput') }}
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+useI18n();
 
 const inputValue = ref('45');
 const isValidInput = ref(true);
