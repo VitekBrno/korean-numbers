@@ -22,8 +22,8 @@
 </template>
 
 <script setup>
-import NumberInput from './components/NumberInput.vue';
-import LanguageSwitcher from './components/LanguageSwitcher.vue';
+import NumberInput from '@/components/NumberInput.vue';
+import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 </script>
 
 <style scoped>

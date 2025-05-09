@@ -13,12 +13,32 @@
     <div v-if="!isValidInput" class="invalid-feedback">
       {{ $t('invalidInput') }}
     </div>
+    
+    <div class="row w-100 mt-5 g-4">
+      <div class="col-md-6">
+        <KoreanNumber
+          :number="isValidInput ? inputValue : ''"
+          type="sino"
+          :title="$t('sinoKorean')"
+          :placeholder="$t('enterNumber')"
+        />
+      </div>
+      <div class="col-md-6">
+        <KoreanNumber
+          :number="isValidInput ? inputValue : ''"
+          type="native"
+          :title="$t('nativeKorean')"
+          :placeholder="$t('enterNumber')"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 import { useI18n } from 'vue-i18n';
+import KoreanNumber from '@/components/KoreanNumber.vue';
 
 useI18n();
 

@@ -6,14 +6,20 @@ const messages = {
     inputLabel: 'Enter a number (0-9999)',
     invalidInput: 'Please enter a number between 0 and 9999',
     footer: 'Korean Number Learning App © 2025',
-    switchToCzech: 'Switch to Czech'
+    switchToCzech: 'Switch to Czech',
+    sinoKorean: 'Sino-Korean',
+    nativeKorean: 'Native Korean',
+    enterNumber: 'Enter a number...'
   },
   cs: {
     title: 'Učte se korejská čísla',
     inputLabel: 'Zadejte číslo (0-9999)',
     invalidInput: 'Prosím zadejte číslo mezi 0 a 9999',
     footer: 'Aplikace pro učení korejských čísel © 2025',
-    switchToEnglish: 'Přepnout na angličtinu'
+    switchToEnglish: 'Přepnout na angličtinu',
+    sinoKorean: 'Sino-korejština',
+    nativeKorean: 'Původní korejština',
+    enterNumber: 'Zadejte číslo...'
   }
 };
 
