@@ -3,10 +3,17 @@
     <div class="card-header bg-primary bg-opacity-10 py-3">
       <h3 class="card-title h5 mb-0 text-primary">{{ title }}</h3>
     </div>
-    <div class="card-body d-flex align-items-center justify-content-center py-4">
-      <p class="korean-text mb-0" :class="{ 'text-muted': !number }">
-        {{ koreanNumber || placeholder }}
-      </p>
+    <div class="card-body d-flex flex-column align-items-center py-4">
+      <div class="text-center mb-4">
+        <p class="korean-text mb-0" :class="{ 'text-muted': !number }">
+          {{ koreanNumber || placeholder }}
+        </p>
+      </div>
+      <div v-if="number && example" class="example-section w-100">
+        <p class="korean-example mb-2" v-html="example.korean"></p>
+        <p v-if="currentLocale === 'en'" class="translation mb-0">{{ example.english }}</p>
+        <p v-if="currentLocale === 'cs'" class="translation mb-0">{{ example.czech }}</p>
+      </div>
     </div>
   </div>
 </template>
@@ -14,6 +21,8 @@
 <script setup>
 import { computed } from 'vue';
 import { convertToSinoKorean, convertToNativeKorean } from '@/utils/koreanNumbers';
+import { sinoExampleTemplates, nativeExampleTemplates } from '@/utils/examples';
+import { useI18n } from 'vue-i18n';
 
 const props = defineProps({
   number: {
@@ -35,6 +44,20 @@ const props = defineProps({
   }
 });
 
+const { locale } = useI18n();
+const currentLocale = computed(() => locale.value);
+
+const example = computed(() => {
+  if (!props.number) return null;
+  const templates = props.type === 'sino' ? sinoExampleTemplates : nativeExampleTemplates;
+  const randomTemplate = templates[Math.floor(Math.random() * templates.length)];
+  return {
+    korean: randomTemplate.korean.replace('{number}', koreanNumber.value),
+    english: randomTemplate.english.replace('{number}', props.number),
+    czech: randomTemplate.czech.replace('{number}', props.number)
+  };
+});
+
 const koreanNumber = computed(() => {
   if (!props.number) return '';
   const num = Number(props.number);
@@ -50,9 +73,23 @@ const koreanNumber = computed(() => {
   font-weight: 500;
 }
 
+.korean-example {
+  font-size: 1.2rem;
+  color: #1a1a1a;
+}
+
+.translation {
+  font-size: 1rem;
+  color: #4a5568;
+}
+
 @media (max-width: 768px) {
   .korean-text {
     font-size: 2rem;
+  }
+  
+  .korean-example {
+    font-size: 1rem;
   }
 }
 </style>
