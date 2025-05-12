@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
 import { useNumberStore } from '@/stores/number';
 import { useI18n } from 'vue-i18n';
@@ -35,7 +35,7 @@ import { useI18n } from 'vue-i18n';
 useI18n();
 const store = useNumberStore();
 
-const isValidInput = ref(true);
+const isValidInput = ref<boolean>(true);
 
 const validateInput = () => {
   const num = Number(store.currentNumber);

@@ -1,5 +1,11 @@
+interface ExampleTemplate {
+  korean: string;
+  english: string;
+  czech: string;
+}
+
 // Example sentence templates for native Korean numbers
-export const nativeExampleTemplates = [
+export const nativeExampleTemplates: ExampleTemplate[] = [
   {
     korean: "<b>{number}</b>개의 사과가 있어요.",
     english: "There are {number} apples.",
@@ -28,7 +34,7 @@ export const nativeExampleTemplates = [
 ];
 
 // Example sentence templates for Sino-Korean numbers
-export const sinoExampleTemplates = [
+export const sinoExampleTemplates: ExampleTemplate[] = [
   {
     korean: "<b>{number}</b>원이에요.",
     english: "It costs {number} won.",

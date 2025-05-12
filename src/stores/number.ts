@@ -1,19 +1,21 @@
 import { defineStore } from 'pinia';
 import { ref, computed } from 'vue';
 import { speakKorean } from '@/utils/audio';
-import { convertToSinoKorean, convertToNativeKorean } from '@/utils/koreanNumbers';
+import { convertToSinoKorean } from '@/utils/koreanNumbers';
+
+type Difficulty = 'easy' | 'medium' | 'hard';
 
 export const useNumberStore = defineStore('number', () => {
-  const currentNumber = ref(45);
-  const minRange = ref(0);
-  const maxRange = ref(100);
-  const isAutoPlaying = ref(false);
-  const difficulty = ref('medium');
-  const isWaiting = ref(false);
-  let nextNumberTimeout;
+  const currentNumber = ref<number>(45);
+  const minRange = ref<number>(0);
+  const maxRange = ref<number>(100);
+  const isAutoPlaying = ref<boolean>(false);
+  const difficulty = ref<Difficulty>('medium');
+  const isWaiting = ref<boolean>(false);
+  let nextNumberTimeout: number | undefined;
 
-  const intervalDuration = computed(() => {
-    const durations = {
+  const intervalDuration = computed((): number => {
+    const durations: Record<Difficulty, number> = {
       easy: 6000,
       medium: 4000,
       hard: 2000
@@ -21,29 +23,28 @@ export const useNumberStore = defineStore('number', () => {
     return durations[difficulty.value];
   });
 
-  function generateRandomNumber() {
+  function generateRandomNumber(): void {
     const min = Math.ceil(minRange.value);
     const max = Math.floor(maxRange.value);
     const newNumber = Math.floor(Math.random() * (max - min + 1)) + min;
     currentNumber.value = newNumber;
   }
 
-  function setRange(min, max) {
+  function setRange(min: number, max: number): void {
     minRange.value = Math.max(0, Math.min(min, 9999));
     maxRange.value = Math.max(0, Math.min(max, 9999));
   }
 
-  function startAutoPlay() {
+  function startAutoPlay(): void {
     if (isAutoPlaying.value) return;
     isAutoPlaying.value = true;
     scheduleNextIteration();
   }
 
-  function scheduleNextIteration() {
+  function scheduleNextIteration(): void {
     generateRandomNumber();
     isWaiting.value = false;
 
-    // Play pronunciations at the end of the interval
     setTimeout(() => {
       if (isAutoPlaying.value) {
         const sinoNumber = convertToSinoKorean(currentNumber.value);
@@ -52,8 +53,7 @@ export const useNumberStore = defineStore('number', () => {
       }
     }, intervalDuration.value);
 
-    // Schedule next number after interval + 2 seconds
-    nextNumberTimeout = setTimeout(() => {
+    nextNumberTimeout = window.setTimeout(() => {
       if (isAutoPlaying.value) {
         isWaiting.value = false;
         scheduleNextIteration();
@@ -61,13 +61,15 @@ export const useNumberStore = defineStore('number', () => {
     }, intervalDuration.value + 2000);
   }
 
-  function stopAutoPlay() {
+  function stopAutoPlay(): void {
     isAutoPlaying.value = false;
     isWaiting.value = false;
-    clearTimeout(nextNumberTimeout);
+    if (nextNumberTimeout) {
+      clearTimeout(nextNumberTimeout);
+    }
   }
 
-  function setDifficulty(level) {
+  function setDifficulty(level: Difficulty): void {
     difficulty.value = level;
     if (isAutoPlaying.value) {
       stopAutoPlay();

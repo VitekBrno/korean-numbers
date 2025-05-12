@@ -1,6 +1,12 @@
 import { createI18n } from 'vue-i18n';
 
-const messages = {
+interface Messages {
+  [key: string]: {
+    [key: string]: string;
+  };
+}
+
+const messages: Messages = {
   en: {
     title: 'Learn Korean Numbers',
     invalidInput: 'Please enter a number between 0 and 9999',

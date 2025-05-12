@@ -28,7 +28,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from 'vue';
 import { convertToSinoKorean, convertToNativeKorean } from '@/utils/koreanNumbers';
 import { sinoExampleTemplates, nativeExampleTemplates } from '@/utils/examples';
@@ -41,9 +41,8 @@ const props = defineProps({
     default: ''
   },
   type: {
-    type: String,
-    required: true,
-    validator: (value) => ['sino', 'native'].includes(value)
+    type: String as () => 'sino' | 'native',
+    required: true
   },
   title: {
     type: String,

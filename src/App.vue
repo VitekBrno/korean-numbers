@@ -14,7 +14,7 @@
         <RangeControls />
         <AutoPlayControls />
         <NumberDisplay />
-        <NumberTranslations :number="isValidInput ? store.currentNumber : ''" />
+        <NumberTranslations :number="store.currentNumber" />
       </div>
     </main>
     
@@ -25,9 +25,7 @@
     </footer>
   </div>
 </template>
-
-<script setup>
-import { ref } from 'vue';
+<script setup lang="ts">
 import { useNumberStore } from '@/stores/number';
 import RangeControls from '@/components/RangeControls.vue';
 import AutoPlayControls from '@/components/AutoPlayControls.vue';
@@ -36,12 +34,7 @@ import NumberTranslations from '@/components/NumberTranslations.vue';
 import LanguageSwitcher from '@/components/LanguageSwitcher.vue';
 
 const store = useNumberStore();
-const isValidInput = ref(true);
 
-const validateInput = () => {
-  const num = Number(store.currentNumber);
-  isValidInput.value = !isNaN(num) && num >= 0 && num <= 9999 && store.currentNumber !== '';
-};
 </script>
 
 <style scoped>

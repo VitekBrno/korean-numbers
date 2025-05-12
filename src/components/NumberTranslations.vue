@@ -19,7 +19,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import KoreanNumber from '@/components/KoreanNumber.vue';
 import { useI18n } from 'vue-i18n';
 

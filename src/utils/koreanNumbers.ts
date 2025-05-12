@@ -1,4 +1,12 @@
-const sinoKorean = {
+interface SinoKoreanNumbers {
+  [key: number]: string;
+}
+
+interface NativeKoreanNumbers {
+  [key: number]: string;
+}
+
+const sinoKorean: SinoKoreanNumbers = {
   0: '영',
   1: '일',
   2: '이',
@@ -14,7 +22,7 @@ const sinoKorean = {
   1000: '천'
 };
 
-const nativeKorean = {
+const nativeKorean: NativeKoreanNumbers = {
   0: '영',
   1: '하나',
   2: '둘',
@@ -36,7 +44,7 @@ const nativeKorean = {
   90: '아흔'
 };
 
-export function convertToSinoKorean(num) {
+export function convertToSinoKorean(num: number): string {
   if (num === 0) return sinoKorean[0];
   
   const digits = String(num).split('').map(Number);
@@ -63,7 +71,7 @@ export function convertToSinoKorean(num) {
   return result;
 }
 
-export function convertToNativeKorean(num) {
+export function convertToNativeKorean(num: number): string {
   if (num === 0) return nativeKorean[0];
   if (num <= 9) return nativeKorean[num];
   

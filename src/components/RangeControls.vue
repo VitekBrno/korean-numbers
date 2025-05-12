@@ -26,7 +26,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useNumberStore } from '@/stores/number';
 import { useI18n } from 'vue-i18n';
 
