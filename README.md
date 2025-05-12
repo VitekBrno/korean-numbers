@@ -1,5 +1,44 @@
-# Vue 3 + Vite
+# Korean Number Learning App
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+An interactive web application for learning Korean numbers, featuring both Sino-Korean and Native Korean number systems. Practice with random number generation, audio pronunciation, and example sentences in both English and Czech.
 
-Learn more about IDE Support for Vue in the [Vue Docs Scaling up Guide](https://vuejs.org/guide/scaling-up/tooling.html#ide-support).
+## Features
+
+- Learn both Sino-Korean and Native Korean number systems
+- Audio pronunciation with native Korean text-to-speech
+- Random number generation with customizable ranges
+- Auto-play mode with adjustable difficulty levels
+- Bilingual interface (English and Czech)
+- Example sentences showing number usage in context
+- Responsive design for all devices
+
+## Tech Stack
+
+- Vue 3 with Composition API
+- Vite for build tooling
+- Pinia for state management
+- Vue I18n for internationalization
+- Bootstrap 5 for styling
+- Web Speech API for pronunciation
+
+## Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+## Building for Production
+
+```bash
+npm run build
+```
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
